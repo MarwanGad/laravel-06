@@ -1,7 +1,5 @@
 <?php
 
-use App\Models\Post;
-use App\Models\User;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -13,11 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('comments', function (Blueprint $table) {
+        Schema::create('authors', function (Blueprint $table) {
             $table->id();
-            $table->string('comment');
-            $table->foreignIdFor(Post::class)->constrained();
-            $table->foreignIdFor(User::class)->constrained();
+            $table->string('name',40);
+            $table->year('yob');
+            $table->text('data');
             $table->timestamps();
             $table->softDeletes();
         });
@@ -28,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('comments');
+        Schema::dropIfExists('authors');
     }
 };
